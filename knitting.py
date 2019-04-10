@@ -37,6 +37,26 @@ print(f'{round(avgRate, 5)} / {round(avgRate, 3)}\n')
 
 futureWeight = initialWeight * exp(decayRates[-1] * (len(rowWeights) + 3))
 
+predicted_3_ahead = []
+
+for index, decay in enumerate(decayRates):
+    predicate = initialWeight * exp(decay * (index + 4))
+    if index < len(rowWeights) - 3:
+        pairs = (round(predicate, 2), rowWeights[index + 3])
+        predicted_3_ahead.append(pairs)
+
+print(predicted_vs_actual)
+
+predicted_3_ahead = []
+
+for index, decay in enumerate(decayRates):
+    predicate = initialWeight * exp(decay * (index + 2))
+    if index < len(rowWeights) - 1:
+        pairs = (round(predicate, 2), rowWeights[index + 1])
+        predicted_1_ahead.append(pairs)
+
+print(predicted_1_ahead)
+
 print('Predicted Weight After Next 3 Rows:')
 print(f'{round(futureWeight, 3)} grams\n')
 
